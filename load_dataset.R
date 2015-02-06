@@ -23,6 +23,8 @@ LoadDataset <- function(reload = FALSE) {
                                      stringsAsFactor = FALSE)
                 df <- df[grepl("^(1|2){1}/2/2007$", df$Date), ]
                 df$Date <- as.Date(df$Date, format = "%d/%m/%Y")
+                # Its rather stupid to have times as POSIXct with the current date.
+                # Therefore this elaboration with pasting the date from the Date column.
                 df$Time <- strptime(paste(format(df$Date, "%Y-%m-%d"), df$Time), 
                                     format = "%Y-%m-%d %H:%M:%S")
                 
