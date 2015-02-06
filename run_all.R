@@ -8,6 +8,9 @@ source("plot4.R")
 
 # See if we can show them..
 for (n in 1:4) {
-      f <- get(paste0("Plot", n, "Base"))
-      f()
+        dev.off()
+        f <- get(paste0("Plot", n, "Base"))
+        f()
+        message("Displaying plot", n)
+        Sys.sleep(3)
 }
