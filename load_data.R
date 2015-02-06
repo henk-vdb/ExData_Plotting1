@@ -17,48 +17,50 @@
 load.data.env <- new.env()
 
 #' Load files and unzip them in the folder data.
-#' @param url - the url to download.
-.LoadData <- local(function(url) {
+#' @param url - character vector. the url(s) to download.
+.LoadData <- local(function(urls) {
         datafolder <- "data" 
-        
-        filename <- basename(URLdecode(url))
-        logfile <- file.path(datafolder, paste0("download_", filename, ".log"))
-        downloadfile <- file.path(datafolder, filename)  
         
         if (!file.exists(datafolder)) {
                 message("Creating a data folder: '", datafolder, "'.")
                 dir.create(datafolder)
         }
         
-        if (!file.exists(downloadfile)) {
-                message("Downloading '", url, "'.")
-                # no 'curl' status code transfered, cannot know if download succeeds,
-                # unless an error occurs.
-                download.file(url, destfile = downloadfile, method = "curl", quiet = TRUE)
-                date.downloaded <- date()
-                message("Downloaded '", downloadfile, "' on ", date.downloaded)
+        for (url in urls) {
+                filename <- basename(URLdecode(url))
+                logfile <- file.path(datafolder, paste0("download_", filename, ".log"))
+                downloadfile <- file.path(datafolder, filename)  
                 
-                if (grepl(".zip$", downloadfile)) {
-                        result <- unzip(downloadfile, exdir = datafolder)
-                        nfiles <- length(result)
-                        message("Unzipped ", nfiles, " file(s).")
+                if (!file.exists(downloadfile)) {
+                        message("Downloading '", url, "'.")
+                        # no 'curl' status code transfered, cannot know if download succeeds,
+                        # unless an error occurs.
+                        download.file(url, destfile = downloadfile, method = "curl", quiet = TRUE)
+                        date.downloaded <- date()
+                        message("Downloaded '", downloadfile, "' on ", date.downloaded)
+                        
+                        if (grepl(".zip$", downloadfile)) {
+                                result <- unzip(downloadfile, exdir = datafolder)
+                                nfiles <- length(result)
+                                message("Unzipped ", nfiles, " file(s).")
+                        } else {
+                                nfiles <- 1; result <- downloadfile
+                        }
+        
+                        start.rel.path <- nchar(datafolder) + 2
+                        cat("source: ", url,
+                            "\ndate of download: ", date.downloaded,
+                            "\nnumber of files: ", nfiles,
+                            "\nlist of files:\n", paste(substring(result, start.rel.path), 
+                                                        collapse = "\n"),
+                            "\n",
+                            file = logfile, sep = "")
                 } else {
-                        nfiles <- 1; result <- downloadfile
+                        lines <- readLines(logfile)
+                        message(filename, " already loaded: ", lines[2])
                 }
-
-                start.rel.path <- nchar(datafolder) + 2
-                cat("source: ", url,
-                    "\ndate of download: ", date.downloaded,
-                    "\nnumber of files: ", nfiles,
-                    "\nlist of files:\n", paste(substring(result, start.rel.path), 
-                                                collapse = "\n"),
-                    "\n",
-                    file = logfile, sep = "")
-        } else {
-                lines <- readLines(logfile)
-                message(filename, " already loaded: ", lines[2])
+                message("See '", logfile, "' for details.\n")
         }
-        message("See '", logfile, "' for details.\n")
 }, env = load.data.env)
 
 
