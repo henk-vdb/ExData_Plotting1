@@ -7,7 +7,7 @@ output: html_document
 
 # Exploratory Data Analysis
 
-This file shows the 4 graphs of the assignment. There was some [discussion](https://class.coursera.org/exdata-011/forum/thread?thread_id=24) 
+This page shows the 4 graphs of the assignment. There was some [discussion](https://class.coursera.org/exdata-011/forum/thread?thread_id=24) 
 about the background of the images. The original images (the ones on the project website,
 as well as the ones in the folder 'figure' in the forked project) have a transparrent background.
 
