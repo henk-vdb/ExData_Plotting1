@@ -11,7 +11,7 @@ This file shows the 4 graphs of the assignment. There was some [discussion](http
 about the background of the images. The original images (the ones on the project website,
 as well as the ones in the folder 'figure' in the forked project) have a transparrent background.
 
-The discussion may be about peanuts, anyway I made mine transparrent, so ...
+The discussion may be about peanuts, anyway I made mine transparrent, so ...  
 On a white background the transparrent background of the files shows white again.
 
 ## Plot1
