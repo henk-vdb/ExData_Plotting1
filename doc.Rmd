@@ -7,8 +7,12 @@ output: html_document
 
 # Exploratory Data Analysis
 
-This file shows the 4 graphs of the assignment. On a white background the transparrent
-background of the files shows white again.
+This file shows the 4 graphs of the assignment. There was some [discussion](https://class.coursera.org/exdata-011/forum/thread?thread_id=24) 
+about the background of the images. The original images (the ones on the project website,
+as well as the ones in the folder 'figure' in the forked project) have a transparrent background.
+
+The discussion may be about peanuts, anyway I made mine transparrent, so ...
+On a white background the transparrent background of the files shows white again.
 
 ## Plot1
 ![plot1.png](plot1.png)
