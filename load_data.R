@@ -17,7 +17,7 @@
 load.data.env <- new.env()
 
 #' Load files and unzip them in the folder data.
-#' @param url - character vector. the url(s) to download.
+#' @param urls - character vector. the url(s) to download.
 .LoadData <- local(function(urls) {
         datafolder <- "data" 
         
