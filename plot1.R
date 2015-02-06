@@ -18,7 +18,10 @@ Plot1Base <- function() {
 
 # Creates a png-image of a histograph of the global active power.
 Plot1 <- function() {
-        png("plot1.png") # default width = 480, height = 480
+        # png defaults:
+        # default width = 480, height = 480
+        # default bg = "white", but the images on the projet page are transparent!
+        png("plot1.png", bg = NA) 
         Plot1Base()
         dev.off()
 }

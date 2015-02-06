@@ -49,7 +49,10 @@ Plot4Base <- function() {
 # - line graph of three energy sub meterings,
 # - line graph of global reactive power.
 Plot4 <- function() {
-        png("plot4.png") # default width = 480, height = 480
+        # png defaults:
+        # default width = 480, height = 480
+        # default bg = "white", but the images on the projet page are transparent!
+        png("plot4.png", bg = NA) 
         Plot4Base()
         dev.off()
 }

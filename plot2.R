@@ -18,7 +18,10 @@ Plot2Base <- function() {
 
 # Creates a png-image of a line graph of the global active power.
 Plot2 <- function() {
-        png("plot2.png") # default width = 480, height = 480
+        # png defaults:
+        # default width = 480, height = 480
+        # default bg = "white", but the images on the projet page are transparent!
+        png("plot2.png", bg = NA) 
         Plot2Base()
         dev.off()
 }
